@@ -1,40 +1,55 @@
 # Multichannel Service Elevator
 
-## Generate KeyTab
+## Getting Started
 
-Open a terminal and write this command line by line, replace "username" with your credentials to the virtual machine.
+1. Generate KeyTab
+   
+   Open a terminal and execute these commands line by line, replace "username" with your virtual machine access credentials.
 
-```bash
-ktutil
-addent -password -p username@INTRANET.IFIS.LOCAL -k 1 -e RC4-HMAC
-wkt user.keytab
-q
+    ```bash
+    ktutil
+    addent -password -p username@INTRANET.IFIS.LOCAL -k 1 -e RC4-HMAC
+    wkt user.keytab
+    q
 
-kinit -k -t user.keytab username@INTRANET.IFIS.LOCAL
-```
+    kinit -k -t user.keytab username@INTRANET.IFIS.LOCAL
+    ```
 
-## Getting started
+2. Clone this project into your main workspaces folder.
 
-1. Clone this project into your main workspace folder.
+    `/home/IFIS/username/workspaces/`
 
-    `/home/IFIS/<username>/workspaces/`
-
-2. Open *standalone.xml* with your editor.
+3. Open *standalone.xml* with your editor.
 
     ```bash
     code standalone.xml
     ```
 
-3. Replace "ext.esanchez" with the respective login credentials to the virtual machine(line: 401-402).
+4. Replace "ext.esanchez" with the respective login credentials to the virtual machine(line: 401-402).
 
     ```xml
     <module-option name="keyTab" value="/home/IFIS/ext.esanchez/user.keytab"/>
     <module-option name="principal" value="ext.esanchez@INTRANET.IFIS.LOCAL"/>
     ```
 
-4. Run elevator script
+5. Run elevator script
    
    ```bash
    bash elevator.sh
    ```
 
+## Runner
+
+1. If you need to execute the project.
+   
+   ```bash
+   bash runner.sh
+   ```
+   
+   if you need pull new changes include `--pull` param
+
+    ```bash
+    bash runner.sh --pull
+    ```
+
+2. Use Ctrl-C to stop
