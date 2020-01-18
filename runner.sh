@@ -9,6 +9,7 @@ then
     git pull
 fi
 
+echo "[INFO] Running server"
 bash /opt/rh/jboss-eap-6.4/bin/standalone.sh
 
 echo "[INFO] Good Job!"
