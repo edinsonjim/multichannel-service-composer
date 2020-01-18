@@ -1,8 +1,8 @@
-# Multichannel Service Elevator
+# Multichannel Service Composer
 
 ## Getting Started
 
-1. Generate KeyTab
+1. Generate KeyTab.
    
    Open a terminal and execute these commands line by line, replace "username" with your virtual machine access credentials.
 
@@ -32,10 +32,10 @@
     <module-option name="principal" value="ext.esanchez@INTRANET.IFIS.LOCAL"/>
     ```
 
-5. Run elevator script
+5. Run composer script.
    
    ```bash
-   bash elevator.sh
+   bash composer.sh
    ```
 
 ## Runner
@@ -46,10 +46,10 @@
    bash runner.sh
    ```
    
-   if you need pull new changes include `--pull` param
+   if you need pull new changes include `--pull` param.
 
     ```bash
     bash runner.sh --pull
     ```
 
-2. Use Ctrl-C to stop
+2. Use Ctrl-C to stop.
