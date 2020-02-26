@@ -134,133 +134,107 @@
         </subsystem>
         <subsystem xmlns="urn:jboss:domain:datasources:1.2">
             <datasources>
-                <datasource jndi-name="java:jboss/datasources/ExampleDS" pool-name="ExampleDS" enabled="true" use-java-context="true">
-                    <connection-url>jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE</connection-url>
-                    <driver>h2</driver>
+                <datasource jta="true" jndi-name="java:/jdbc/dwhImpala_ds" pool-name="DWHIMPALA_DS" enabled="true" use-ccm="true">
+				   <connection-url>jdbc:impala://devimpala01.intranet.ifis.local:21050;AuthMech=1;KrbRealm=INTRANET.IFIS.LOCAL;KrbHostFQDN=devimpala01.intranet.ifis.local;KrbServiceName=impala</connection-url>
+				   <driver-class>com.cloudera.impala.jdbc41.Driver</driver-class>
+				   <driver>impala</driver>
+				   <security>
+					  <security-domain>tpv-hive</security-domain>
+				   </security>
+				</datasource>
+				<datasource jta="true" jndi-name="java:/jdbc/knet_ds" pool-name="KNET_DS" enabled="true" use-ccm="true">
+				   <connection-url>jdbc:oracle:thin:@orak4fdev.intranet.ifis.local:1521/K4FDEV.intranet.ifis.local</connection-url>
+				   <driver-class>oracle.jdbc.OracleDriver</driver-class>
+				   <driver>Oracle12.1.0.2</driver>
+				   <pool>
+					  <min-pool-size>10</min-pool-size>
+					  <max-pool-size>100</max-pool-size>
+					  <flush-strategy>FailingConnectionOnly</flush-strategy>
+				   </pool>
+				   <security>
+					  <user-name>CRM20_APPL</user-name>
+					  <password>CRM20_APPL</password>
+				   </security>
+				   <validation>
+					  <check-valid-connection-sql>SELECT 1 FROM DUAL</check-valid-connection-sql>
+					  <background-validation>true</background-validation>
+					  <background-validation-millis>30000</background-validation-millis>
+				   </validation>
+				   <timeout>
+					  <idle-timeout-minutes>10</idle-timeout-minutes>
+				   </timeout>
+				</datasource>
+				<datasource jta="true" jndi-name="java:/jdbc/domain_ds" pool-name="DOMAIN_DS" enabled="true" use-ccm="true">
+				   <connection-url>jdbc:oracle:thin:@oradbrepodev.intranet.ifis.local:1521/REPODEV.intranet.ifis.local</connection-url>
+				   <driver-class>oracle.jdbc.OracleDriver</driver-class>
+				   <driver>Oracle12.1.0.2</driver>
+				   <security>
+					  <user-name>DOMAIN</user-name>
+					  <password>DOMAIN</password>
+				   </security>
+				</datasource>
+				<datasource jta="true" jndi-name="java:/jdbc/ff_ds" pool-name="FF_DS" enabled="true" use-ccm="true">
+				   <connection-url>jdbc:Oracle:thin:@oradbnpldev.intranet.ifis.local:1521/ORCLDEV.intranet.ifis.local</connection-url>
+				   <driver-class>oracle.jdbc.OracleDriver</driver-class>
+				   <driver>Oracle12.1.0.2</driver>
+				   <security>
+					  <user-name>FAST</user-name>
+					  <password>FasT_24</password>
+				   </security>
+				</datasource>
+				<datasource jta="true" jndi-name="java:/jdbc/maxiwin_ds" pool-name="MAXIWIN_DS" enabled="true" use-ccm="true">
+				   <connection-url>jdbc:oracle:thin:@oradbmxwinuat.intranet.ifis.local:1521/MXWIN.intranet.ifis.local</connection-url>
+				   <driver-class>oracle.jdbc.OracleDriver</driver-class>
+				   <driver>Oracle12.1.0.2</driver>
+				   <pool>
+					  <min-pool-size>10</min-pool-size>
+					  <max-pool-size>100</max-pool-size>
+					  <flush-strategy>FailingConnectionOnly</flush-strategy>
+				   </pool>
+				   <security>
+					  <user-name>MWIN_PM</user-name>
+					  <password>f6967171e</password>
+				   </security>
+				   <validation>
+					  <check-valid-connection-sql>SELECT 1 FROM DUAL</check-valid-connection-sql>
+					  <background-validation>true</background-validation>
+					  <background-validation-millis>30000</background-validation-millis>
+				   </validation>
+				   <timeout>
+					  <idle-timeout-minutes>10</idle-timeout-minutes>
+				   </timeout>
+				</datasource>
+				<datasource jta="true" jndi-name="java:/jdbc/maxiwinnext_ds" pool-name="MAXIWINNEXT_DS" enabled="true" use-ccm="true">
+				   <connection-url>jdbc:oracle:thin:@oradbmxwindev.intranet.ifis.local:1521/NEXTDEV.intranet.ifis.local</connection-url>
+				   <driver-class>oracle.jdbc.OracleDriver</driver-class>
+				   <driver>Oracle12.1.0.2</driver>
+				   <pool>
+					  <min-pool-size>10</min-pool-size>
+					  <max-pool-size>100</max-pool-size>
+					  <flush-strategy>FailingConnectionOnly</flush-strategy>
+				   </pool>
+				   <security>
+					  <user-name>MWIN_NEXT_APPL</user-name>
+					  <password>MWIN_NEXT_APPL</password>
+				   </security>
+				   <validation>
+					  <check-valid-connection-sql>SELECT 1 FROM DUAL</check-valid-connection-sql>
+					  <background-validation>true</background-validation>
+					  <background-validation-millis>30000</background-validation-millis>
+				   </validation>
+				   <timeout>
+					  <idle-timeout-minutes>10</idle-timeout-minutes>
+				   </timeout>
+				</datasource>
+				<datasource jta="true" jndi-name="java:/jdbc/claim_ds" pool-name="CLAIM_DS" enabled="true" use-ccm="true">
+                    <connection-url>jdbc:oracle:thin:@oradbifisdev.intranet.ifis.local:1521/IFISDEV.intranet.ifis.local</connection-url>
+                    <driver-class>oracle.jdbc.OracleDriver</driver-class>
+                    <driver>Oracle12.1.0.2</driver>
                     <security>
-                        <user-name>sa</user-name>
-                        <password>sa</password>
+                        <user-name>CLAIM_APPL</user-name>
+                        <password>CLAIM_APPL_34928</password>
                     </security>
                 </datasource>
-
-		<datasource jta="true" jndi-name="java:/jdbc/dwhImpala_ds" pool-name="DWHIMPALA_DS" enabled="true" use-ccm="true">
-		   <connection-url>jdbc:impala://devimpala01.intranet.ifis.local:21050;AuthMech=1;KrbRealm=INTRANET.IFIS.LOCAL;KrbHostFQDN=devimpala01.intranet.ifis.local;KrbServiceName=impala</connection-url>
-		   <driver-class>com.cloudera.impala.jdbc41.Driver</driver-class>
-		   <driver>impala</driver>
-		   <security>
-		      <security-domain>tpv-hive</security-domain>
-		   </security>
-		</datasource>
-
-		<datasource jta="true" jndi-name="java:/jdbc/knet_ds" pool-name="KNET_DS" enabled="true" use-ccm="true">
-		   <connection-url>jdbc:oracle:thin:@orak4fdev.intranet.ifis.local:1521/K4FDEV.intranet.ifis.local</connection-url>
-		   <driver-class>oracle.jdbc.OracleDriver</driver-class>
-		   <driver>Oracle12.1.0.2</driver>
-		   <pool>
-		      <min-pool-size>10</min-pool-size>
-		      <max-pool-size>100</max-pool-size>
-		      <flush-strategy>FailingConnectionOnly</flush-strategy>
-		   </pool>
-		   <security>
-		      <user-name>CRM20_APPL</user-name>
-		      <password>CRM20_APPL</password>
-		   </security>
-		   <validation>
-		      <check-valid-connection-sql>SELECT 1 FROM DUAL</check-valid-connection-sql>
-		      <background-validation>true</background-validation>
-		      <background-validation-millis>30000</background-validation-millis>
-		   </validation>
-		   <timeout>
-		      <idle-timeout-minutes>10</idle-timeout-minutes>
-		   </timeout>
-		</datasource>
-
-		<datasource jta="true" jndi-name="java:/jdbc/domain_ds" pool-name="DOMAIN_DS" enabled="true" use-ccm="true">
-		   <connection-url>jdbc:oracle:thin:@oradbrepodev.intranet.ifis.local:1521/REPODEV.intranet.ifis.local</connection-url>
-		   <driver-class>oracle.jdbc.OracleDriver</driver-class>
-		   <driver>Oracle12.1.0.2</driver>
-		   <security>
-		      <user-name>DOMAIN</user-name>
-		      <password>DOMAIN</password>
-		   </security>
-		</datasource>
-
-		<datasource jta="true" jndi-name="java:/jdbc/famapp_ds" pool-name="FAMAPP_DS" enabled="true" use-ccm="true">
-		   <connection-url>jdbc:Oracle:thin:@oradbnpldev.intranet.ifis.local:1521/ORCLDEV.intranet.ifis.local</connection-url>
-		   <driver-class>oracle.jdbc.OracleDriver</driver-class>
-		   <driver>Oracle12.1.0.2</driver>
-		   <security>
-		      <user-name>FAMAPP_APPL</user-name>
-		      <password>FAMAPP_APPL_5805</password>
-		   </security>
-		</datasource>
-
-		<datasource jta="true" jndi-name="java:/jdbc/paceas_ds" pool-name="PACE_DS" enabled="true" use-ccm="true">
-		   <connection-url>jdbc:oracle:thin:@oradbpacedev.intranet.ifis.local:1521/PACEDEV.intranet.ifis.local</connection-url>
-		   <driver-class>oracle.jdbc.OracleDriver</driver-class>
-		   <driver>Oracle12.1.0.2</driver>
-		   <pool>
-		      <min-pool-size>10</min-pool-size>
-		      <max-pool-size>100</max-pool-size>
-		      <flush-strategy>FailingConnectionOnly</flush-strategy>
-		   </pool>
-		   <security>
-		      <user-name>PACE_APPL</user-name>
-		      <password>PACE_APPL</password>
-		   </security>
-		   <validation>
-		      <check-valid-connection-sql>SELECT 1 FROM DUAL</check-valid-connection-sql>
-		      <background-validation>true</background-validation>
-		      <background-validation-millis>30000</background-validation-millis>
-		   </validation>
-		   <timeout>
-		      <idle-timeout-minutes>10</idle-timeout-minutes>
-		   </timeout>
-		</datasource>
-
-		<datasource jta="true" jndi-name="java:/jdbc/digibox_ds" pool-name="DIGIBOX_DS" enabled="true" use-ccm="true">
-		   <connection-url>jdbc:oracle:thin:@oradbdigiboxdev.intranet.ifis.local:1521/DIGIBOXDEV.intranet.ifis.local</connection-url>
-		   <driver-class>oracle.jdbc.OracleDriver</driver-class>
-		   <driver>Oracle12.1.0.2</driver>
-		   <security>
-		      <user-name>DIGIBOX_APPL</user-name>
-		      <password>w084935d2f7</password>
-		   </security>
-		</datasource>
-
-		<datasource jta="true" jndi-name="java:/jdbc/ff_ds" pool-name="FF_DS" enabled="true" use-ccm="true">
-		   <connection-url>jdbc:Oracle:thin:@oradbnpldev.intranet.ifis.local:1521/ORCLDEV.intranet.ifis.local</connection-url>
-		   <driver-class>oracle.jdbc.OracleDriver</driver-class>
-		   <driver>Oracle12.1.0.2</driver>
-		   <security>
-		      <user-name>FAST</user-name>
-		      <password>FasT_24</password>
-		   </security>
-		</datasource>
-
-		<datasource jta="true" jndi-name="java:/jdbc/maxiwin_ds" pool-name="MAXIWIN_DS" enabled="true" use-ccm="true">
-		   <connection-url>jdbc:oracle:thin:@oradbmxwindev.intranet.ifis.local:1521/MXWINDEV.intranet.ifis.local</connection-url>
-		   <driver-class>oracle.jdbc.OracleDriver</driver-class>
-		   <driver>Oracle12.1.0.2</driver>
-		   <pool>
-		      <min-pool-size>10</min-pool-size>
-		      <max-pool-size>100</max-pool-size>
-		      <flush-strategy>FailingConnectionOnly</flush-strategy>
-		   </pool>
-		   <security>
-		      <user-name>lpaglia[MWIN_NEXT]</user-name>
-		      <password>Dicembre2019</password>
-		   </security>
-		   <validation>
-		      <check-valid-connection-sql>SELECT 1 FROM DUAL</check-valid-connection-sql>
-		      <background-validation>true</background-validation>
-		      <background-validation-millis>30000</background-validation-millis>
-		   </validation>
-		   <timeout>
-		      <idle-timeout-minutes>10</idle-timeout-minutes>
-		   </timeout>
-		</datasource>
-		
                 <drivers>
                     <driver name="Oracle12.1.0.2" module="jdbc.oracle">
                         <driver-class>oracle.jdbc.OracleDriver</driver-class>
@@ -392,25 +366,23 @@
         <subsystem xmlns="urn:jboss:domain:sar:1.0"/>
         <subsystem xmlns="urn:jboss:domain:security:1.2">
             <security-domains>
-
-		<security-domain name="tpv-hive" cache-type="default">
-		    <authentication>
-			<login-module code="Kerberos" flag="required" module="org.jboss.security.negotiation">
-			    <module-option name="storeKey" value="true"/>
-			    <module-option name="useKeyTab" value="true"/>
-			    <module-option name="keyTab" value="/home/IFIS/ext.esanchez/user.keytab"/>
-			    <module-option name="principal" value="ext.esanchez@INTRANET.IFIS.LOCAL"/>
-			    <module-option name="doNotPrompt" value="true"/>
-			    <module-option name="useTicketCache" value="false"/>
-			    <module-option name="debug" value="true"/>
-			    <module-option name="refreshKrb5Config" value="true"/>
-			    <module-option name="addGSSCredential" value="true"/>
-			    <module-option name="delegationCredential" value="USE"/>
-			    <module-option name="isInitiator" value="true"/>
-			</login-module>
-		    </authentication>
-		</security-domain>
-
+                <security-domain name="tpv-hive" cache-type="default">
+                    <authentication>
+                        <login-module code="Kerberos" flag="required" module="org.jboss.security.negotiation">
+                            <module-option name="storeKey" value="true"/>
+                            <module-option name="useKeyTab" value="true"/>
+                            <module-option name="keyTab" value="/home/IFIS/ext.esanchez/user.keytab"/>
+			                <module-option name="principal" value="ext.esanchez@INTRANET.IFIS.LOCAL"/>
+                            <module-option name="doNotPrompt" value="true"/>
+                            <module-option name="useTicketCache" value="false"/>
+                            <module-option name="debug" value="true"/>
+                            <module-option name="refreshKrb5Config" value="true"/>
+                            <module-option name="addGSSCredential" value="true"/>
+                            <module-option name="delegationCredential" value="USE"/>
+                            <module-option name="isInitiator" value="true"/>
+                        </login-module>
+                    </authentication>
+                </security-domain>
                 <security-domain name="other" cache-type="default">
                     <authentication>
                         <login-module code="Remoting" flag="optional">
