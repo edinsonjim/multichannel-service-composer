@@ -3,7 +3,7 @@
 ## Getting Started
 
 1. Generate KeyTab.
-   
+
    Open a terminal and execute these commands line by line, replace "username" with your virtual machine access credentials.
 
     ```bash
@@ -33,7 +33,7 @@
     ```
 
 5. Run composer script.
-   
+
    ```bash
    bash composer.sh
    ```
@@ -41,15 +41,15 @@
 ## Runner
 
 1. If you need to execute the project.
-   
+
    ```bash
    bash runner.sh
    ```
-   
-   if you need pull new changes include `--pull` param.
+
+   if you need build include `--build` param.
 
     ```bash
-    bash runner.sh --pull
+    bash runner.sh --build
     ```
 
 2. Use Ctrl-C to stop.
