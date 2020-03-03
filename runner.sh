@@ -7,7 +7,8 @@ registries=(pratica documentmanager tabelledominio)
 WORKDIR=$PWD
 REPOSITORY_NAME="multichannel_service"
 
-if [[ "$1" == --build ]] then
+if [[ "$1" == --build ]]
+then
     echo "[INFO] Overwriting standalone"
     cp -r ./standalone.xml /opt/rh/jboss-eap-6.4/standalone/configuration/standalone.xml
 
