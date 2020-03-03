@@ -8,7 +8,7 @@ echo "[INFO] Cloning multichannel_service"
 git clone http://bitbucket.intranet.ifis.local/scm/mc_sr/multichannel_service.git
 cd multichannel_service
 git fetch
-git checkout -b feature/ITCM-26053-portale-next remotes/origin/feature/ITCM-26053-portale-next
+git checkout -b develop origin/develop
 
 echo "[INFO] Compiling package"
 mvn clean package -DskipTests
