@@ -10,11 +10,4 @@ cd multichannel_service
 git fetch
 git checkout -b develop origin/develop
 
-echo "[INFO] Compiling package"
-mvn clean package -DskipTests
-
-echo "[INFO] Installing packages"
-cp -r ./it.ifis.multichannel/multichannel.atomicservice/multichannel.atomicservice.pratica/multichannel.atomicservice.pratica.deploy/target/multichannel.atomicservice.pratica.ear /opt/rh/jboss-eap-6.4/standalone/deployments
-cp -r ./it.ifis.multichannel/multichannel.compositeservice/multichannel.compositeservice.pratica/multichannel.compositeservice.pratica.deploy/target/multichannel.compositeservice.pratica.ear /opt/rh/jboss-eap-6.4/standalone/deployments
-
 echo "[INFO] Good Job!"
